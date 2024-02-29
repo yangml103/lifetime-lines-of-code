@@ -2,7 +2,9 @@
   "name": "lifetime-lines-of-code",
   "displayName": "Lifetime Lines of Code",
   "description": "Shows you how many lines of code you've written in a specific language to make job applications easier",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "publisher": "mly",
+  "icon": "images/18586.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/yangml103/lifetime-lines-of-code"
