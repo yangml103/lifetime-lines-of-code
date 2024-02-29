@@ -2,7 +2,7 @@
   "name": "lifetime-lines-of-code",
   "displayName": "Lifetime Lines of Code",
   "description": "Estimates how many lines of code you've written",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "mly",
   "icon": "images/18586.png",
 
