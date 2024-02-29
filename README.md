@@ -1,15 +1,21 @@
 # lifetime-lines-of-code README
-This is the README for the extension "lifetime-lines-of-code". This extension allows you to count the lines of code in a specific folder. You can select the folder using a popup folder browser.
+This is the README for the extension "lifetime-lines-of-code". This extension allows you to count the lines of code in a specific folder. You can select the folder using a popup folder browser. 
+
+## Overview
+
+This is a response to job applications/school applications that ask for an estimate of how many lines of code you've written in your lifetime. What a dumb question. This won't give you an exact number, but it will give you a rough estimate, which is better than nothing. 
 
 ## Features
 
-* Count lines of code in a specific folder: The extension will count the lines of code in Python, JavaScript, Java, TypeScript, HTML, and CSS files in the selected folder, and the total lines will be printed onto the console.
+* Count lines of code in a specific folder: The extension will count the lines of code in Python, JavaScript, Java, TypeScript, HTML, and CSS files in the selected folder*, and the total lines will be printed onto the console.
+
+* The extension will only count Python, Java, Js, Ts, HTML, CSS, C++, C#, C, and SQL. More languages could be added in the future if necessary. Let me know if you need other languages
 
 ## How to Use
 
-1. Run the `lifetime-lines-of-code.countLines` command. A dialog will open for you to select a folder.
+1. Run the command 'Count Lines' in the command palette by pressing control + shift + p. A dialog will open for you to select a folder.
 2. Select a folder. The extension will start counting the lines of code in the selected folder.
-3. The total lines of code will be printed in the console.
+3. The total lines of (Python, Java, JavaScript, TypeScript, HTML, CSS) code will be printed in the console.
 
 ## Requirements
 
@@ -22,7 +28,6 @@ N/A
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 

@@ -29,17 +29,17 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.showErrorMessage('No folder selected.');
 				return;
 			}
-			
+
 			for(const workspaceFolder of folders){
 				
 			// Search for files in the workspace folder
-			vscode.workspace.findFiles(new vscode.RelativePattern(workspaceFolder,'**/*.*'),'',5000) // matches all files, up to 5000
+			vscode.workspace.findFiles(new vscode.RelativePattern(workspaceFolder,'**/*.*'),'') // matches all files
 			.then((files:vscode.Uri[]) =>{
 				for(const file of files){
 					// Process each file
 					countLinesOfCode(file.fsPath);
 				}
-				console.log(`Total lines of (Python, Java, JavaScript, TypeScript, HTML, CSS) code: ${totalLinesOfCode}`);
+				console.log(`Total lines of (Python, Java, JavaScript, TypeScript, HTML, CSS, SQL, C#, C++, C) code: ${totalLinesOfCode}`);
 			});
 
 		}
@@ -53,8 +53,8 @@ export function activate(context: vscode.ExtensionContext) {
 function countLinesOfCode(filePath:string){
 
 	const fileExtension:string = filePath.split('.').pop() || '';
-// Check if the file is a Python, JavaScript, Java, TypeScript, HTML, or CSS file
-	if (['py', 'js', 'java', 'ts', 'html', 'css'].includes(fileExtension)) {
+// Check if the file is a Python, JavaScript, Java, TypeScript, HTML, CSS, SQL, C#, C++ or C file
+	if (['py', 'js', 'java', 'ts', 'html', 'css','sql','cs','cpp','c'].includes(fileExtension)) {
 		const fileContent = fs.readFileSync(filePath, 'utf-8');
 		const lines = fileContent.split('\n').filter(line => line.trim() !== '');
 
