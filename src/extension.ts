@@ -8,20 +8,23 @@ let totalLinesOfCode = 0;
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
+	let languages = ['Python', 'Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL', 'C#', 'C++', 'C'];
+	let extensions = ['py', 'java', 'js', 'ts', 'html', 'css', 'sql', 'cs', 'cpp', 'c'];
+
 
 	console.log('Congratulations, your extension "lifetime-lines-of-code" is now active!');
 
 	let disposable = vscode.commands.registerCommand('lifetime-lines-of-code.countLines', () => {
 			
-		// Access active workspace
-		//const currFolders = vscode.workspace.workspaceFolders;
 
+		// let user select which folder to iterate through 
 		const folders = vscode.window.showOpenDialog({
 			canSelectFiles: true,
 			canSelectFolders: true,
 			canSelectMany: true,
 		});
 
+		
 		
 		folders.then(folders => { 
 			// Iterate over workspace folders
