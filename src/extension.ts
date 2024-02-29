@@ -21,10 +21,11 @@ function countLinesOfCode(filePath:string, selectedExtensions:string[]){
 
 export function activate(context: vscode.ExtensionContext) {
 
-	let languages = ['Python', 'Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL', 'C#', 'C++', 'C'];
+	let languages = [' Python', ' Java', ' JavaScript', ' TypeScript', ' HTML', ' CSS', ' SQL', ' C#', ' C++', ' C'];
 	let extensions = ['py', 'java', 'js', 'ts', 'html', 'css', 'sql', 'cs', 'cpp', 'c'];
 
-	console.log('Congratulations, your extension "lifetime-lines-of-code" is now active!');
+	console.log('Lines of Code extension is now active!');
+	console.log('Run "Count Lines" in the command palette to begin.');
 
 	let disposable = vscode.commands.registerCommand('lifetime-lines-of-code.countLines', () => {
 		// let user select which folder to iterate through 
@@ -58,7 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
 							// Process each file
 							countLinesOfCode(file.fsPath, selectedExtensions);
 						}
-						vscode.window.showInformationMessage(`Total lines of ${selectedLanguages} code: ${totalLinesOfCode}`);
+						vscode.window.showInformationMessage(`Total lines of${selectedLanguages} code: ${totalLinesOfCode}`);
 						//console.log(`Total lines of ${selectedLanguages} code: ${totalLinesOfCode}`);
 					});
 				}

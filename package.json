@@ -1,8 +1,12 @@
 {
   "name": "lifetime-lines-of-code",
   "displayName": "Lifetime Lines of Code",
-  "description": "Shows me how many lines of code I've written in each different language to amke job applications easier",
-  "version": "0.0.1",
+  "description": "Shows you how many lines of code you've written in a specific language to make job applications easier",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yangml103/lifetime-lines-of-code"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
