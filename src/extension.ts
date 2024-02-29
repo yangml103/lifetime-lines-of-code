@@ -33,38 +33,51 @@ export function activate(context: vscode.ExtensionContext) {
 				return;
 			}
 
-			for(const workspaceFolder of folders){
-				
-			// Search for files in the workspace folder
-			vscode.workspace.findFiles(new vscode.RelativePattern(workspaceFolder,'**/*.*'),'') // matches all files
-			.then((files:vscode.Uri[]) =>{
-				for(const file of files){
-					// Process each file
-					countLinesOfCode(file.fsPath);
+			vscode.window.showQuickPick(languages, {
+				canPickMany: true,
+				placeHolder: 'Select languages to include in the line count'
+			}).then(selectedLanguages => {
+				if (!selectedLanguages) {
+					vscode.window.showErrorMessage('No languages selected.');
+					return;
 				}
-				console.log(`Total lines of (Python, Java, JavaScript, TypeScript, HTML, CSS, SQL, C#, C++, C) code: ${totalLinesOfCode}`);
-			});
 
-		}
+				let selectedExtensions = selectedLanguages.map(language => extensions[languages.indexOf(language)]);
+
+				for(const workspaceFolder of folders){
+					
+				// Search for files in the workspace folder
+				vscode.workspace.findFiles(new vscode.RelativePattern(workspaceFolder,'**/*.*'),'') // matches all files
+				.then((files:vscode.Uri[]) =>{
+					for(const file of files){
+						// Process each file
+						countLinesOfCode(file.fsPath, selectedExtensions);
+					}
+					console.log(`Total lines of ${selectedLanguages} code: ${totalLinesOfCode}`);
+				});
+
+			}
 	});
 
 	});
 
 	context.subscriptions.push(disposable);
-}
+},
 
-function countLinesOfCode(filePath:string){
+
+
+function countLinesOfCode(filePath:string, selectedExtensions:string[]){
 
 	const fileExtension:string = filePath.split('.').pop() || '';
-// Check if the file is a Python, JavaScript, Java, TypeScript, HTML, CSS, SQL, C#, C++ or C file
-	if (['py', 'js', 'java', 'ts', 'html', 'css','sql','cs','cpp','c'].includes(fileExtension)) {
-		const fileContent = fs.readFileSync(filePath, 'utf-8');
-		const lines = fileContent.split('\n').filter(line => line.trim() !== '');
+    if (selectedExtensions.includes(fileExtension)) {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        const lines = fileContent.split('\n').filter(line => line.trim() !== '');
 
-		// Increment the total lines of code
-		totalLinesOfCode += lines.length;
+        // Increment the total lines of code
+        totalLinesOfCode += lines.length;
+    }
 }
-}
+
 
 // This method is called when your extension is deactivated
 export function deactivate() {}
