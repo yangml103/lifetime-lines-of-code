@@ -14,17 +14,24 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('lifetime-lines-of-code.countLines', () => {
 			
 		// Access active workspace
-		const currFolders = vscode.workspace.workspaceFolders;
+		//const currFolders = vscode.workspace.workspaceFolders;
 
-		if (!currFolders){
-			vscode.window.showErrorMessage('No workspace found.');
-			return;
-		}
+		const folders = vscode.window.showOpenDialog({
+			canSelectFiles: true,
+			canSelectFolders: true,
+			canSelectMany: true,
+		});
 
-		// Iterate over workspace folders
-		for(const workspaceFolder of currFolders){
+		
+		folders.then(folders => { 
+			// Iterate over workspace folders
+			if (!folders){
+				vscode.window.showErrorMessage('No folder selected.');
+				return;
+			}
 			
-
+			for(const workspaceFolder of folders){
+				
 			// Search for files in the workspace folder
 			vscode.workspace.findFiles(new vscode.RelativePattern(workspaceFolder,'**/*.*'),'',5000) // matches all files, up to 5000
 			.then((files:vscode.Uri[]) =>{
@@ -32,10 +39,11 @@ export function activate(context: vscode.ExtensionContext) {
 					// Process each file
 					countLinesOfCode(file.fsPath);
 				}
-				console.log(`Total lines of code: ${totalLinesOfCode}`);
+				console.log(`Total lines of (Python, Java, JavaScript, TypeScript, HTML, CSS) code: ${totalLinesOfCode}`);
 			});
 
 		}
+	});
 
 	});
 
