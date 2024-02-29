@@ -4,19 +4,29 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 
 let totalLinesOfCode = 0;
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+
+
+function countLinesOfCode(filePath:string, selectedExtensions:string[]){
+
+	const fileExtension:string = filePath.split('.').pop() || '';
+    if (selectedExtensions.includes(fileExtension)) {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        const lines = fileContent.split('\n').filter(line => line.trim() !== '');
+
+        // Increment the total lines of code
+        totalLinesOfCode += lines.length;
+    }
+}
+
+
 export function activate(context: vscode.ExtensionContext) {
 
 	let languages = ['Python', 'Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'SQL', 'C#', 'C++', 'C'];
 	let extensions = ['py', 'java', 'js', 'ts', 'html', 'css', 'sql', 'cs', 'cpp', 'c'];
 
-
 	console.log('Congratulations, your extension "lifetime-lines-of-code" is now active!');
 
 	let disposable = vscode.commands.registerCommand('lifetime-lines-of-code.countLines', () => {
-			
-
 		// let user select which folder to iterate through 
 		const folders = vscode.window.showOpenDialog({
 			canSelectFiles: true,
@@ -24,11 +34,8 @@ export function activate(context: vscode.ExtensionContext) {
 			canSelectMany: true,
 		});
 
-		
-		
 		folders.then(folders => { 
-			// Iterate over workspace folders
-			if (!folders){
+			if (!folders) {
 				vscode.window.showErrorMessage('No folder selected.');
 				return;
 			}
@@ -45,39 +52,20 @@ export function activate(context: vscode.ExtensionContext) {
 				let selectedExtensions = selectedLanguages.map(language => extensions[languages.indexOf(language)]);
 
 				for(const workspaceFolder of folders){
-					
-				// Search for files in the workspace folder
-				vscode.workspace.findFiles(new vscode.RelativePattern(workspaceFolder,'**/*.*'),'') // matches all files
-				.then((files:vscode.Uri[]) =>{
-					for(const file of files){
-						// Process each file
-						countLinesOfCode(file.fsPath, selectedExtensions);
-					}
-					console.log(`Total lines of ${selectedLanguages} code: ${totalLinesOfCode}`);
-				});
-
-			}
+					vscode.workspace.findFiles(new vscode.RelativePattern(workspaceFolder,'**/*.*'),'')
+					.then((files:vscode.Uri[]) =>{
+						for(const file of files){
+							// Process each file
+							countLinesOfCode(file.fsPath, selectedExtensions);
+						}
+						vscode.window.showInformationMessage(`Total lines of ${selectedLanguages} code: ${totalLinesOfCode}`);
+						//console.log(`Total lines of ${selectedLanguages} code: ${totalLinesOfCode}`);
+					});
+				}
+			});
+		});
 	});
-
-	});
-
-	context.subscriptions.push(disposable);
-},
-
-
-
-function countLinesOfCode(filePath:string, selectedExtensions:string[]){
-
-	const fileExtension:string = filePath.split('.').pop() || '';
-    if (selectedExtensions.includes(fileExtension)) {
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const lines = fileContent.split('\n').filter(line => line.trim() !== '');
-
-        // Increment the total lines of code
-        totalLinesOfCode += lines.length;
-    }
-}
-
+}	
 
 // This method is called when your extension is deactivated
 export function deactivate() {}
