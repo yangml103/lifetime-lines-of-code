@@ -1,10 +1,11 @@
 {
   "name": "lifetime-lines-of-code",
   "displayName": "Lifetime Lines of Code",
-  "description": "Shows you how many lines of code you've written in a specific language to make job applications easier",
+  "description": "Estimates how many lines of code you've written",
   "version": "1.0.2",
   "publisher": "mly",
   "icon": "images/18586.png",
+
   "repository": {
     "type": "git",
     "url": "https://github.com/yangml103/lifetime-lines-of-code"
@@ -13,16 +14,13 @@
     "vscode": "^1.80.0"
   },
   "categories": [
+    "Programming Languages",
     "Other"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "lifetime-lines-of-code.helloWorld",
-        "title": "Hello World"
-      },
       {
         "command": "lifetime-lines-of-code.countLines",
         "title": "Count Lines"

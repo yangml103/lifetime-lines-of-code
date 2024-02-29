@@ -1,11 +1,5 @@
 # Change Log
 
-All notable changes to the "lifetime-lines-of-code" extension will be documented in this file.
-
-## [Unreleased]
-
-- Initial release
-
 ### Added 
 
  - v1.0.1 Added option to select folders to calculate lines of code
@@ -15,4 +9,5 @@ All notable changes to the "lifetime-lines-of-code" extension will be documented
 ### 2/29/2024
 
  - v1.0.2 Added icon 
-
+ - v1.0.3 Fixed formatting issues
+ 
