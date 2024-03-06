@@ -38,5 +38,9 @@ Updated format/design
 
 Fixed mistakes on marketplace
 
+### 1.0.4
+
+Added filters to ignore npm packages, test files, and other computer generated code
+
 
 **Enjoy!**

@@ -21,6 +21,7 @@ function countLinesOfCode(filePath:string, selectedExtensions:string[]){
 
 export function activate(context: vscode.ExtensionContext) {
 
+	// Languages to count 
 	let languages = [' Python', ' Java', ' JavaScript', ' TypeScript', ' HTML', ' CSS', ' SQL', ' C#', ' C++', ' C'];
 	let extensions = ['py', 'java', 'js', 'ts', 'html', 'css', 'sql', 'cs', 'cpp', 'c'];
 
@@ -40,7 +41,8 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.showErrorMessage('No folder selected.');
 				return;
 			}
-
+			
+			// let users select which language to include
 			vscode.window.showQuickPick(languages, {
 				canPickMany: true,
 				placeHolder: 'Select languages to include in the line count'
@@ -49,20 +51,33 @@ export function activate(context: vscode.ExtensionContext) {
 					vscode.window.showErrorMessage('No languages selected.');
 					return;
 				}
-
+				
+				// match selected languages to the extension of the file
 				let selectedExtensions = selectedLanguages.map(language => extensions[languages.indexOf(language)]);
 
+				// prompt user for directories to exclude:
+				vscode.window.showInputBox({
+					prompt: 'Enter directories to exclude, separated by commas (e.g., node_modules,test), leave empty to include all directories'
+				}).then(excludeInput => {
+					let excludeDirectories = excludeInput ? `{${excludeInput.split(',').map(dir => `**/${dir.trim()}/**`).join(',')}}` : '';
+					console.log(excludeDirectories);
+				
+				// iterate through folders 
 				for(const workspaceFolder of folders){
-					vscode.workspace.findFiles(new vscode.RelativePattern(workspaceFolder,'**/*.*'),'')
+					vscode.workspace.findFiles(
+						new vscode.RelativePattern(workspaceFolder,'**/*.*'),
+						excludeDirectories) 
 					.then((files:vscode.Uri[]) =>{
 						for(const file of files){
 							// Process each file
 							countLinesOfCode(file.fsPath, selectedExtensions);
 						}
 						vscode.window.showInformationMessage(`Total lines of${selectedLanguages} code: ${totalLinesOfCode}`);
-						//console.log(`Total lines of ${selectedLanguages} code: ${totalLinesOfCode}`);
 					});
+				
 				}
+				
+			});
 			});
 		});
 	});

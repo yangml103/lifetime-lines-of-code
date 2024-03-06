@@ -11,3 +11,7 @@
  - v1.0.2 Added icon 
  - v1.0.3 Fixed formatting issues
  
+
+### 3/6/2024
+
+ - v1.0.4 Added filter to ignore npm packages, test files and computer generated code
