@@ -1,10 +1,10 @@
 {
   "name": "lifetime-lines-of-code",
   "displayName": "Lifetime Lines of Code",
-  "description": "Estimates how many lines of code you've written",
-  "version": "1.0.3",
+  "description": "Estimates how many lines of code you've written in a directory",
+  "version": "1.0.4",
   "publisher": "mly",
-  "icon": "images/18586.png",
+  "icon": "images/new_icon.png",
 
   "repository": {
     "type": "git",

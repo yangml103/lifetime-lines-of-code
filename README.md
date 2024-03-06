@@ -16,12 +16,14 @@ This is a response to job applications/school applications that ask for an estim
 1. Run the command 'Count Lines' in the command palette by pressing Control + Shift + P. A dialog will open for you to select a folder.
 2. Select a folder. 
 3. Select the languages.
-4. The extension will start counting the lines of code in the selected folder.
-5. The total lines of code will be printed in a vscode notification box on the bottom right corner.
+4. (Optional) Type in names of folders to ignore i.e. node_modules,test,generated
+5. The extension will start counting the lines of code in the selected folder(s).
+6. The total lines of code will be printed in a vscode notification box on the bottom right corner.
 
 ## Known Issues
 
 * Doesn't differentiate between computer generated lines and lines that are human written 
+* Cancel button on progress bar doesn't work 
 
 ## Release Notes
 
@@ -37,6 +39,11 @@ Updated format/design
 ### 1.0.3 
 
 Fixed mistakes on marketplace
+
+### 1.0.4
+
+Added filters to ignore npm packages, test files, and other computer generated code
+Added progress bar (cancel button doesn't work)
 
 
 **Enjoy!**
