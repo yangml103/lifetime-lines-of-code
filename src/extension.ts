@@ -68,36 +68,23 @@ export function activate(context: vscode.ExtensionContext) {
 							location: vscode.ProgressLocation.Notification,
 							title: "Processing files...",
 							cancellable: true
-						},(progress, token) => {
+						},
+						// doesn't do anything 
+						(progress, token) => {
 							token.onCancellationRequested(() => {
 								console.log("User cancelled the long running operation");
 							});
-
+						// 
 							return new Promise<void>(async (resolve, reject) => {
 								const files = await vscode.workspace.findFiles(
 									new vscode.RelativePattern(workspaceFolder,'**/*.*'),
 									excludeDirectories); 
-		
-									
-									// calculate progress to show user
-									const totalFiles = files.length;
-        							const incrementValue = 100 / totalFiles;
-        							let accumulatedIncrement = 0;
+	
 									for(const file of files){
 
-										// Check if cancellation has been requested
-										if (token.isCancellationRequested) {
-											reject('Operation cancelled by user');
-											return;
-										}
 										// Process each file
 										countLinesOfCode(file.fsPath, selectedExtensions);
-										// Accumulate increment and report progress when accumulatedIncrement >= 1
-										accumulatedIncrement += incrementValue;
-										if (accumulatedIncrement >= 1) {
-											progress.report({ increment: Math.floor(accumulatedIncrement) });
-											accumulatedIncrement -= Math.floor(accumulatedIncrement); // subtract the reported part
-										}
+										
 									}
 									vscode.window.showInformationMessage(`Total lines of${selectedLanguages} code: ${totalLinesOfCode}`);
 									resolve();
