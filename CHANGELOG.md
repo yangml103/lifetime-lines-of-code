@@ -15,3 +15,9 @@
 ### 3/6/2024
 
  - v1.0.4 Added filter to ignore npm packages, test files and computer generated code
+ - v1.0.4 Added progress bar in bottom right to show user that program is running 
+
+### 3/8/2024
+
+ - v1.0.5 Cleaned up layout to make code more readable by splitting processing into functions
+

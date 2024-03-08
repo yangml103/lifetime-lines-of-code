@@ -45,5 +45,8 @@ Fixed mistakes on marketplace
 Added filters to ignore npm packages, test files, and other computer generated code
 Added progress bar (cancel button doesn't work)
 
+### 1.0.5
+
+Cleaned up layout to make code more readable 
 
 **Enjoy!**
