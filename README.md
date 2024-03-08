@@ -3,7 +3,7 @@ This extension allows you to count the lines of code in a specific language in a
 
 ## Overview
 
-This is a response to job applications/school applications that ask for an estimate of how many lines of code you've written in your lifetime. What a dumb question. This won't give you an exact number, but it will give you a rough estimate, which is better than nothing. 
+This is a response to job applications/school applications that ask for an estimate of how many lines of code you've written in your lifetime. This won't give you an exact number, but it will give you a rough estimate, which is better than nothing. 
 
 ## Features
 
