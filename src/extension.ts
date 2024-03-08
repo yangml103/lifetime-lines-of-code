@@ -5,7 +5,7 @@ import * as fs from 'fs';
 
 let totalLinesOfCode = 0;
 
-function countLinesOfCode(filePath:string, selectedExtensions:string[]){
+async function countLinesOfCode(filePath:string, selectedExtensions:string[]){
 
 	const fileExtension:string = filePath.split('.').pop() || '';
     if (selectedExtensions.includes(fileExtension)) {
