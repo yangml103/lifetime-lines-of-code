@@ -20,4 +20,5 @@
 ### 3/8/2024
 
  - v1.0.5 Cleaned up layout to make code more readable by splitting processing into functions
+ - v1.0.6 Cleaned up README and added files to gitignore
 

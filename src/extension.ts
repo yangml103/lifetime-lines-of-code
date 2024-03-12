@@ -83,7 +83,7 @@ async function processFilesWithProgress(workspaceFolder: vscode.Uri, selectedExt
         await processFiles(workspaceFolder, selectedExtensions, directoriesToExclude);
 
         // Display the message after files have been processed
-        vscode.window.showInformationMessage(`Total lines of ${selectedLanguages.join(', ')} code: in ${folders}: ${totalLinesOfCode}`);
+        vscode.window.showInformationMessage(`Total lines of ${selectedLanguages.join(', ')} code: in ${folders}: ${totalLinesOfCode.toLocaleString()}`);
     });
 }
 
