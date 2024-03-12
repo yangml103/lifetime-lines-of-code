@@ -3,17 +3,17 @@ This extension allows you to count the lines of code in a specific language in a
 
 ## Overview
 
-This is a response to job applications/school applications that ask for an estimate of how many lines of code you've written in your lifetime. This won't give you an exact number, but it will give you a rough estimate, which is better than nothing. 
+This is a response to job applications/school applications that ask for an estimate of how many lines of code you've written in your lifetime. This won't give you an exact number, but it will give you a rough estimate. 
 
 ## Features
 
-* Count lines of code in a specific folder: The extension will count the lines of code in the selected folder*, and the total lines will be printed onto the console.
+* The extension will count the lines of code in each file in a selected folder, and the total lines will be printed in a vscode notification box
 
-* The extension will only count Python, Java, Js, Ts, HTML, CSS, C++, C#, C, and SQL. More languages could be added in the future if necessary. Let me know if you need other languages
+* The extension will only count Python, Java, Js, Ts, HTML, CSS, C++, C#, C, and SQL. Let me know if you need other languages
 
 ## How to Use
 
-1. Run the command 'Count Lines' in the command palette by pressing Control + Shift + P. A dialog will open for you to select a folder.
+1. Run the command 'Count Lines' in the command palette by pressing Control + Shift + P.
 2. Select a folder. 
 3. Select the languages.
 4. (Optional) Type in names of folders to ignore i.e. node_modules,test,generated
@@ -23,7 +23,6 @@ This is a response to job applications/school applications that ask for an estim
 ## Known Issues
 
 * Doesn't differentiate between computer generated lines and lines that are human written 
-* Cancel button on progress bar doesn't work 
 
 ## Release Notes
 
@@ -48,5 +47,14 @@ Added progress bar (cancel button doesn't work)
 ### 1.0.5
 
 Cleaned up layout to make code more readable 
+
+### v1.0.6 
+ 
+Cleaned up README and added files to gitignore
+
+### v1.0.7
+
+Fixed some typos 
+
 
 **Enjoy!**

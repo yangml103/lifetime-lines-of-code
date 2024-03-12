@@ -5,3 +5,7 @@ node_modules
 *.vsix
 src/test
 src/testingExtension
+
+vsc-extension-quickstart.md
+.vscode
+
